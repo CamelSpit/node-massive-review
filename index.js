@@ -21,7 +21,7 @@ const app = express();
 //app.use()
 // Mounts the specified middleware function or functions at the specified path: the middleware function is executed when the base of the requested path matches path.
 
-//Middleware is any number of functions that are invoked by the Express.js routing layer before your final request handler is, and thus sits in the middle between a raw request and the final intended route. It seits in between your axios request in your React and your Node endpoint.
+//Middleware is any number of functions that are invoked by the Express.js routing layer before your final request handler is, and thus sits in the middle between a raw request and the final intended route. It sits in between your axios request in your React and your Node endpoint.
 
 //bodyParser.json() returns middleware that only parses json. A new body object containing the parsed data is populated on the request object after the middleware (i.e. req.body).
 app.use(bodyParser.json());
@@ -31,12 +31,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-//connect to the database. This will load the tables and functions, returning them to the db instance
-massive(process.env.CONNECTION_STRING).then(dbInstance => {
-    // app.set(name, value)
-    // Assigns setting name to value. You may store any value that you want, but certain names can be used to configure the behavior of the server. 'db' is the name. dbInstance is the value.
-app.set('db', dbInstance);
-});
 
 
 //app.get(path, callback)
@@ -64,10 +58,17 @@ app.delete('/api/product/:id', controller.delete)
 
 const port = process.env.PORT || 3000;
 
+
+//connect to the database. This will load the tables and functions, returning them to the db instance
+massive(process.env.CONNECTION_STRING).then(dbInstance => {
+    // app.set(name, value)
+    // Assigns setting name to value. You may store any value that you want, but certain names can be used to configure the behavior of the server. 'db' is the name. dbInstance is the value.
+app.set('db', dbInstance);
+
 // app.listen()
 // Listens for connections on the specified port. 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
+});
 
 
 
