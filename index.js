@@ -7,6 +7,7 @@ const express = require('express')
 , bodyParser = require('body-parser')
 , massive = require('massive')
 , controller = require('./products_controller')
+// Dotenv loads environment variables from a .env file into process.env .
 require('dotenv').config()
 
 
@@ -17,6 +18,8 @@ const app = express();
 
 //app.use()
 // Mounts the specified middleware function or functions at the specified path: the middleware function is executed when the base of the requested path matches path.
+
+//Middleware is any number of functions that are invoked by the Express.js routing layer before your final request handler is, and thus sits in the middle between a raw request and the final intended route. It seits in between your axios request in your React and your Node endpoint.
 
 //bodyParser.json() returns middleware that only parses json. A new body object containing the parsed data is populated on the request object after the middleware (i.e. req.body).
 app.use(bodyParser.json());
@@ -62,3 +65,10 @@ const port = process.env.PORT || 3000;
 // app.listen()
 // Listens for connections on the specified port. 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+
+
+
+
+//Cross-origin requests are made using the standard HTTP request methods. Most servers will allow GET requests, meaning they will allow resources from external origins (say, a web page) to read their assets. HTTP requests methods like PATCH, PUT, or DELETE, however, may be denied to prevent malicious behavior. For many servers, this is intentional. For example, it is likely that server A does not want servers B, C, or D to edit or delete its assets.
