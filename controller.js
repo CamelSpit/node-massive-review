@@ -7,8 +7,15 @@ module.exports = {
         //req.body contains key-value pairs of data submitted in the request body. By default, it is undefined, and is populated when you use body-parsing middleware such as body-parser. If you ever are sending data back on the body and req.body is undefined check to make sure you are using body-parser.
         const {name, description, price, imageurl} = req.body;
         
-        dbInstance.create_product([name, description, price,imageurl]).then( () => {
-            res.status(200).send();
+
+        //Inoking the postgreSQL query in the create_product.sql file (massive makes this possible) and passing in 4 arguments inside an array. If there is only one argument you don't need to put it into an array if there is more than one you must have the array.
+        dbInstance.create_product([name, description, price,imageurl]).then( (responseFromDB) => {
+            //After the query has ran the responseFromDB will come back as the parameter in your .then you can then manipulate it however you would like or send it forward in the res.send.
+
+            // res.send([body])
+            // Sends the HTTP response.
+            // The body parameter can be a String, an object, an Array, etc.
+            res.status(200).send(responseFromDB);
         })
 
     }, 
