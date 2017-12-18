@@ -44,9 +44,10 @@ module.exports = {
 
         //req.query
         // This property is an object containing a property for each query string parameter in the route. If there is no query string, it is the empty object, {}.
-        const { params, query } = req; 
+        const { id } = req.params; 
+        const { desc } = req.query
         
-        dbInstance.update_product([params.id, query.desc]).then( product => {
+        dbInstance.update_product([id, desc]).then( product => {
             res.status(200).send();
         })
 
