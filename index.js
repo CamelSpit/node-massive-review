@@ -1,5 +1,7 @@
 // Massive is a PostgreSQL-specific data access tool. The goal of Massive is to make it easier for you to use PostgreSQL's amazing features. It helps you access and query your database as you want to.
 
+//MassiveJS is an amazing library that lets you query your PostgreSQL database from Node in a very easy, straight-forward way. Instead of trying to map your database to objects, MassiveJS lets you work directly with your tables and db functions.
+
 //You can create a directory in the root of your project called "db" and Massive will load the SQL files therein and make them executable based on file name.
 
 const express = require('express')
